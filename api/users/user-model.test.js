@@ -47,5 +47,12 @@ describe("deleteById", () => {
     const updatedUsers = await db("users");
     expect(updatedUsers).toHaveLength(1);
   });
-  test("[6] resolves the deleted user", () => {});
+  test("[6] resolves the deleted user", async () => {
+    const deletedUser = await Users.deleteById(16);
+    expect(deletedUser).toMatchObject({
+      email: "bob@example.com",
+      id: 16,
+      name: "Bob",
+    });
+  });
 });
