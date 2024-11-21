@@ -15,4 +15,13 @@ async function insert(user) {
       return db("users").where("id", id).first();
     });
 }
-module.exports = { getAll, getById, insert };
+
+async function deleteById(id) {
+  const deletedUser = await db("users").where("id", id).first();
+  if (deletedUser) {
+    await db("users").where("id", id).del();
+  }
+  return deletedUser;
+}
+
+module.exports = { getAll, getById, insert, deleteById };

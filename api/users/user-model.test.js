@@ -40,3 +40,12 @@ describe("insert", () => {
     expect(updatedUsers).toHaveLength(3);
   });
 });
+
+describe("deleteById", () => {
+  test("[5] deletes a user by id", async () => {
+    await Users.deleteById(14);
+    const updatedUsers = await db("users");
+    expect(updatedUsers).toHaveLength(1);
+  });
+  test("[6] resolves the deleted user", () => {});
+});
