@@ -29,5 +29,14 @@ describe("getById", () => {
 });
 
 describe("insert", () => {
-  test("[3] adds user to the users table", async () => {});
+  const user = { email: "tom@example.com", name: "Tom" };
+  test("[3] resolves newly created user", async () => {
+    const result = await Users.insert(user);
+    expect(result).toMatchObject(user);
+  });
+  test("[4] adds user to the users table", async () => {
+    await Users.insert(user);
+    const updatedUsers = await db("users");
+    expect(updatedUsers).toHaveLength(3);
+  });
 });

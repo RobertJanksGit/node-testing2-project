@@ -7,4 +7,12 @@ function getAll() {
 function getById(id) {
   return db("users").where("id", id).first();
 }
-module.exports = { getAll, getById };
+
+async function insert(user) {
+  return await db("users")
+    .insert(user)
+    .then(([id]) => {
+      return db("users").where("id", id).first();
+    });
+}
+module.exports = { getAll, getById, insert };
