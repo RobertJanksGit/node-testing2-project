@@ -21,7 +21,13 @@ describe("getAll", () => {
 });
 describe("getById", () => {
   test("[2] resolves user by user is", async () => {
-    const user = await Users.getById(2);
-    expect(user).toBe("Bob");
+    let user = await Users.getById(6);
+    expect(user).toEqual({ email: "bob@example.com", id: 6, name: "Bob" });
+    user = await Users.getById(5);
+    expect(user).toEqual({ email: "alice@example.com", id: 5, name: "Alice" });
   });
+});
+
+describe("insert", () => {
+  test("[3] adds user to the users table", async () => {});
 });
